@@ -1,129 +1,133 @@
-\documentclass[11pt]{article}
-\usepackage[margin=0.6in]{geometry}
+%% ONE-PAGE RESUME - Harsh Raj (derived from the master resume)
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=0.55in, top=0.4in, bottom=0.35in]{geometry}
 \usepackage[hidelinks]{hyperref}
-\usepackage{parskip}
 \usepackage{enumitem}
 \usepackage{titlesec}
-\titleformat{\section}{\large\bfseries}{}{0em}{}
-\setlist{nosep, left=0pt}
+\usepackage{etoolbox}
+\usepackage{xcolor}
+
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\raggedbottom
+
+\titleformat{\section}{\large\bfseries}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+\setlist[itemize]{leftmargin=1.2em, itemsep=0.5pt, topsep=1pt, parsep=0pt, partopsep=0pt}
+
+% ---------- Toggles ----------
+\newtoggle{projarguen}      \toggletrue{projarguen}
+\newtoggle{projmergeiq}     \toggletrue{projmergeiq}
+\newtoggle{projhealthassist}\toggletrue{projhealthassist}
+
+\newtoggle{certaws}     \toggletrue{certaws}
+\newtoggle{certoci}     \toggletrue{certoci}
+\newtoggle{certsap}     \toggletrue{certsap}
+\newtoggle{certmern}    \toggletrue{certmern}
+
+% ---------- Macros ----------
+\newcommand{\cert}[5]{%
+  \iftoggle{cert#1}{%
+    \item \textbf{#2} \textit{(#3)}\ifblank{#4}{}{, #4}%
+    \ifblank{#5}{}{\hfill\href{#5}{[Verify]}}%
+  }{}%
+}
+\newcommand{\entryhead}[2]{\textbf{#1}\hfill #2\par}
+\newcommand{\techline}[1]{\textit{\small #1}\par\vspace{0.5pt}}
+
 \begin{document}
 
-% =====================
-% Header
-% =====================
 \begin{center}
-    {\LARGE \textbf{Harsh Raj}}\\[3pt]
-    \small
-    Jamshedpur, Jharkhand, India $\vert$ +91-92634-01358 $\vert$ \href{mailto:myselfharshr@gmail.com}{myselfharshr@gmail.com} \\
-    \href{https://github.com/primetree2}{github.com/primetree2} $\vert$ \href{http://www.linkedin.com/in/harsh-raj-820117173}{linkedin.com/in/harsh-raj-820117173}
+  {\LARGE\bfseries Harsh Raj}\\[2pt]
+  {\small
+  Jamshedpur, Jharkhand, India \,$|$\, +91 92634 01358 \,$|$\,
+  \href{mailto:myselfharshr@gmail.com}{myselfharshr@gmail.com}\\[1pt]
+  \href{https://portfolio-out.vercel.app/}{portfolio-out.vercel.app} \,$|$\,
+  \href{https://github.com/primetree2}{github.com/primetree2} \,$|$\,
+  \href{https://www.linkedin.com/in/harsh-raj-820117173/}{linkedin.com/in/harsh-raj-820117173}}
 \end{center}
 
-\section*{Professional Summary}
+\section*{Summary}
+Computer Science graduate who builds and ships full-stack, AI-powered web apps. Launched Arguen, a live AI-judged debate platform with hundreds of visitors and Razorpay billing, and MergeIQ, a GitHub App and Chrome extension that reviews pull requests with AI. Curious about new technologies and dedicated to building innovative solutions.
 
-Final-year Computer Science student with experience developing AI-powered applications, developer tools, and full-stack web platforms. Skilled in Python, JavaScript/TypeScript, React, FastAPI, PostgreSQL, and cloud deployment, with research experience in automated code refactoring and software quality evaluation.
-
-\vspace{-2mm}
-% =====================
-% Education
-% =====================
 \section*{Education}
+\entryhead{VIT-AP University, Amaravati, Andhra Pradesh}{Graduated: September 2026}
+B.Tech in Computer Science and Engineering \hfill \textbf{CGPA: 8.56 / 10}\par
+\vspace{1pt}
+\entryhead{Vidya Bharati Chinmaya Vidyalaya, Jamshedpur}{Class 10: 2020 \quad Class 12: 2022}
+Senior Secondary (CBSE) \hfill \textbf{Class 10: 94.4\% \quad Class 12: 83.2\%}\par
 
-\noindent\textbf{VIT-AP University, Amaravati} \hfill \textit{Expected: September 2026}\\
-B.Tech in Computer Science and Engineering, SCOPE \\
-\textbf{CGPA: 8.56 / 10}
+\section*{Technical Skills}
+\begin{itemize}[leftmargin=0pt, label={}, itemsep=0.5pt]
+  \item \textbf{Languages:} Python, TypeScript, JavaScript, SQL, Java, HTML/CSS
+  \item \textbf{Frameworks:} React, Next.js, FastAPI, Flask, Tailwind CSS, shadcn/ui
+  \item \textbf{Data \& Backend:} PostgreSQL, Supabase (Auth, Realtime, RLS), Drizzle ORM, REST APIs, WebSockets, Webhooks
+  \item \textbf{AI / LLM:} Gemini API, OpenAI API, Anthropic API, prompt engineering, structured JSON outputs
+  \item \textbf{DevOps \& Cloud:} Git, GitHub Actions, Docker, Vitest, Sentry, PostHog, AWS, Google Cloud Run, Vercel, Railway, Render
+\end{itemize}
 
-\vspace{0.8em}
-
-\noindent\textbf{Vidya Bharati Chinmaya Vidyalaya, Jamshedpur} \hfill \textit{March 2022}\\
-Senior Secondary School \\
-\textbf{Class 10: 94.4\% \quad Class 12: 83.2\%}
-
-
-
-% =====================
-% Skills (ATS keywords)
-% =====================
-\section*{Skills}
-\textbf{Languages:} Python, Java, JavaScript, TypeScript, SQL, HTML/CSS.\\
-\textbf{Frameworks \& Libraries:} React, Next.js, FastAPI, Flask, TailwindCSS, shadcn/ui.\\
-\textbf{Databases:} PostgreSQL, Supabase (Postgres + RLS + Realtime), Drizzle ORM.\\
-\textbf{Tools \& Platforms:} Git, GitHub, GitLab CI/CD, Vitest, AWS, Vercel, Railway, Google Cloud, Sentry, PostHog, N8N.\\
-\textbf{AI/ML:} Machine Learning, NLP, Google Gemini API, OpenAI API, Prompt Engineering.\\
-
-% =====================
-% Selected Projects (bullet + impact + tech keywords)
-% =====================
 \section*{Projects}
+
+\iftoggle{projarguen}{
+\entryhead{Arguen -- Competitive Live Debate Platform}{%
+  \href{https://arguen.com}{[Live]} $|$ \href{https://github.com/primetree2/arguen}{[GitHub]}}
+\techline{Next.js 16, TypeScript, Supabase (Postgres, RLS, Realtime), Drizzle ORM, Gemini API, Razorpay, Vercel}
 \begin{itemize}
+  \item Built and launched solo a real-time debate platform where two players argue timed rounds under a Gemini AI judge that scores 4 dimensions and detects 16 logical fallacies.
+  \item Architected 48 API routes and 47 SQL migrations on Supabase Postgres (Row-Level Security) for Elo-based ranked matchmaking, live spectating, and Realtime score sync.
+  \item Integrated Razorpay subscriptions with signature-verified, de-duplicated webhooks; wrote 116 Vitest tests run on every push via GitHub Actions.
+  \item \textbf{Results:} 613 unique visitors, 1,130+ sessions (PostHog); 99.99\% crash-free sessions (Sentry).
+\end{itemize}
+\vspace{1pt}
+}{}
 
-    \item \textbf{Argos - Competitive Live Debate Platform}
-    \hfill \href{https://argos-indol.vercel.app}{\texttt{[Live Link]}} \\
-    \textit{Tech: Next.js 16, TypeScript, Supabase, PostgreSQL, Drizzle ORM, Gemini AI, TailwindCSS v4, shadcn/ui, Vercel} \\
-    Built a full-stack competitive debate platform where two players argue timed rounds while an AI judge scores each argument across 4 dimensions and flags any of 10 logical fallacies in real time. Architected ~25 API route handlers and 25+ Supabase migrations (Postgres with RLS) via Drizzle ORM, powering Elo-based ranked matchmaking, live spectating, audience voting, and Supabase Realtime score/turn sync. Integrated Google Gemini for automated scoring and feedback plus shareable OG result cards; instrumented with Sentry and PostHog, tested with Vitest in a GitLab CI pipeline, and deployed on Vercel with cron-driven daily topic generation and turn-timeout automation.
+\iftoggle{projmergeiq}{
+\entryhead{MergeIQ -- AI-Powered Pull Request Analyzer}{%
+  \href{https://github.com/primetree2/mergeiq}{[GitHub]} $|$ \href{https://web-production-6f4dd.up.railway.app}{[Live API]}}
+\techline{Python, FastAPI, Chrome Extension (Manifest V3), Gemini 2.5 Flash, GitHub REST API, GitHub Apps, Railway}
+\begin{itemize}
+  \item Built a Chrome extension and GitHub App that analyze pull requests with Gemini, returning a Safe / Review Needed / Risky verdict, risk flags, and suggested review questions as structured JSON.
+  \item Pulls live repo context (README, folder tree, dependencies, recent commits) so analysis is project-aware, not diff-only.
+  \item Webhook endpoint verifies HMAC-SHA256 signatures and posts the analysis as a PR comment automatically via JWT app authentication.
+\end{itemize}
+\vspace{1pt}
+}{}
 
-    \item \textbf{MergeIQ - AI-Powered Pull Request Analyzer}
-    \hfill \href{https://github.com/primetree2/mergeiq}{\texttt{[GitHub]}} $\vert$ \href{https://web-production-6f4dd.up.railway.app}{\texttt{[Live Link]}} \\
-    \textit{Tech: Python, FastAPI, Chrome Extension (MV3), Gemini 2.5 Flash, GitHub REST API, PyJWT, Railway} \\
-    Built a Chrome extension and GitHub App that automatically analyzes every pull request using Gemini AI, delivering structured verdicts (Safe / Review Needed / Risky) with risk flags, summaries, and suggested review questions. Fetches live repo context (README, folder structure, dependencies, recent commits) for project-aware analysis. GitHub App mode posts analysis comments autonomously on PR open via webhook, requiring zero manual interaction from contributors.
+\iftoggle{projhealthassist}{
+\entryhead{HealthAssist -- AI Symptom Checker and Health Companion}{%
+  \href{https://health-assist-rose.vercel.app/}{[Live]} $|$ \href{https://github.com/primetree2/HealthAssist}{[GitHub]}}
+\techline{Python, FastAPI, React (Vite), Tailwind CSS, Gemini 2.5 Flash-Lite, PyMuPDF, Vercel, Render}
+\begin{itemize}
+  \item Built a full-stack app that takes age, sex, symptoms, and an optional blood-report PDF, and returns a structured analysis with possible conditions, questions for a doctor, precautions, and warnings.
+  \item FastAPI backend extracts PDF text with PyMuPDF and prompts Gemini for JSON-only output, with a regex fallback and session-scoped history.
+\end{itemize}
+}{}
 
-    \item \textbf{HealthAssist - AI Symptom Checker and Health Companion} 
-    \hfill \href{https://health-assist-rose.vercel.app/}{\texttt{[Live Link]}} \\
-    \textit{Tech: Python, FastAPI, React, TailwindCSS, Google API, Generative AI, Render, PostgreSQL} \\
-    Implemented a web-application that generates detailed analyses of the symptoms provided by the patient including blood-report context-awareness, with personalized advices and precautions. Integrated 4 key data-points with 5 levels of analyses/advices.
-
-    \item \textbf{CodeSage - AI code-base refactoring system and questions generator} 
-    \hfill \href{https://codesage-724681386895.us-central1.run.app/}{\texttt{[Live Link]}} \\
-    \textit{Tech: Python, Flask, React, TailwindCSS, Google API, Google Cloud, OpenAI API, LLMs} \\
-    Implemented an AI code-base analysis and refactoring system that helps improve code quality, maintainability, and generates insights about your projects using Google's Gemini AI or other LLMs. Supports more than 15 programming languages. Conducted a detailed research report on the performance of 5 leading LLMs with different prompts and scoring metrics. Currently developing a cAST-based pipeline for cutting-edge refactoring capabilities. 
-
+\section*{Achievements \& Leadership  }
+\begin{itemize}
+  \item \textbf{2nd place among 800 teams}, The Return Journey Hackathon 2024 (national level; GDSC, IIT Kanpur).
+  \item \textbf{Manager, TEAM NEXT NEXUS (Prompt Engineering Club)}, Jul--Dec 2024: led prompt-engineering study groups and reviewed generative-AI mini-projects.
+  \item \textbf{Associate Manager, Madhya Bharat Association (Cultural Club)}, Jul--Dec 2024: coordinated logistics and teams for cultural events with 50+ participants.
 \end{itemize}
 
-\section*{Research}
-
-\textbf{Performance Evaluation of LLMs and Prompt Strategies for Automated Python Code Refactoring:} \\
-Evaluated 4 frontier LLMs and 2 prompt-engineering strategies for automated Python code refactoring across 5 benchmark programs. Measured code quality and documentation improvements using BLEU, ROUGE-L, and Pylint metrics, achieving style-conformance scores of 9.2--9.7/10. Conducted comparative analysis of model and prompt performance to identify effective refactoring strategies.
-
-% =====================
-% Certifications & Achievements
-% =====================
 \section*{Certifications}
-
-\begin{itemize}[leftmargin=*]
-    \item \textbf{AWS Certified Cloud Practitioner (AWS)} \hfill \href{https://github.com/primetree2/cisco-certificate/blob/main/AWS\%20Certified\%20Cloud\%20Practitioner\%20certificate.pdf}{\texttt{[Link]}}
-    \item \textbf{SAP Generative AI Developer (SAP)} \hfill \href{https://github.com/primetree2/cisco-certificate/blob/main/SAP_LA_AIG02_EN_11_EX.pdf}{\texttt{[Link]}}
-    \item \textbf{Data Analysis in R (DataCamp)} \hfill \href{https://github.com/primetree2/cisco-certificate/blob/main/certificate\%20(1)_merged.pdf}{\texttt{[Link]}}
-    \item \textbf{MERN Full Stack (Ethnus)} \hfill \href{https://github.com/primetree2/cisco-certificate/blob/main/3G3GLRGN.pdf}{\texttt{[Link]}}
-    \item \textbf{Oracle OCI Generative AI Professional (Oracle)} \hfill \href{https://github.com/primetree2/cisco-certificate/blob/main/eCertificate.pdf}{\texttt{[Link]}}
-    \item \textbf{Oracle Certified Foundations Associate (Oracle)} \hfill \href{https://github.com/primetree2/cisco-certificate/blob/main/oracle.pdf}{\texttt{[Link]}}
-    \item \textbf{JavaScript Essentials (Cisco)} \hfill \href{https://github.com/primetree2/cisco-certificate/blob/main/22BCE7591_AP2023246000888_DA02.pdf}{\texttt{[Link]}}
-    \item \textbf{Networking Essentials (Cisco)} \hfill \href{https://github.com/primetree2/cisco-certificate/blob/main/cisco\%20networking\%20essectials.pdf}{\texttt{[Link]}}
-    \item \textbf{Claude 101 (Anthropic)} \hfill \href{https://verify.skilljar.com/c/ciebgmmxzm2d}{\texttt{[Link]}}
-    \item \textbf{AI Fluency: Framework \& Foundations (Anthropic)} \hfill \href{https://verify.skilljar.com/c/8ezigsab3hki}{\texttt{[Link]}}
+\begin{itemize}[itemsep=0.5pt]
+  \cert{aws}{AWS Certified Cloud Practitioner}{Amazon Web Services}{}{https://github.com/primetree2/cisco-certificate/blob/main/AWS\%20Certified\%20Cloud\%20Practitioner\%20certificate.pdf}
+  \cert{oci}{Oracle OCI Generative AI Professional}{Oracle}{}{https://github.com/primetree2/cisco-certificate/blob/main/eCertificate.pdf}
+  \cert{sap}{SAP Generative AI Developer}{SAP}{}{https://github.com/primetree2/cisco-certificate/blob/main/SAP_LA_AIG02_EN_11_EX.pdf}
+  \cert{mern}{MERN Full Stack}{Ethnus}{}{https://github.com/primetree2/cisco-certificate/blob/main/3G3GLRGN.pdf}
 \end{itemize}
 
-
-
-\section*{Achievements}
-\begin{itemize}
-    \item\textbf{2nd Place, The Return Journey Hackathon} (GDSC, IIT-Kanpur)
-\end{itemize}
-
-% =====================
-% Experience / Roles (campus + leadership)
-% =====================
-\section*{Leadership \& Roles}
-\begin{itemize}
-    \item \textbf{Manager}, TEAM NEXT NEXUS (Prompt Engineering Club) \hfill July 2024 -- December 2024\\
-    Led prompt-engineering study groups and reviewed generative-AI mini-project submissions, facilitating collaborative learning and technical discussions among club members.
-    \item \textbf{Associate Manager}, Madhya Bharat Association (Cultural Club) \hfill July 2024--December 2024\\
-    Oversaw event logistics and team coordination for cultural events with 50+ participants.
-\end{itemize}
-
-% =====================
-% Additional
-% =====================
-\section*{Additional Information}
-\textbf{Languages:} English (Proficient), Hindi (Native) \\
-\textbf{Interests:} AI Research, Number Theory, Art/Animation, Content Creation
+\vspace{2pt}
+\textbf{Interests:} AI research, number theory, art and animation, content creation
 
 \end{document}
