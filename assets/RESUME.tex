@@ -5,12 +5,12 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{microtype}
-\usepackage[margin=0.55in, top=0.4in, bottom=0.35in]{geometry}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{etoolbox}
 \usepackage{xcolor}
+\usepackage[margin=0.55in, top=0.4in, bottom=0.5in]{geometry}
 
 \input{glyphtounicode}
 \pdfgentounicode=1
@@ -26,6 +26,7 @@
 
 % ---------- Toggles ----------
 \newtoggle{projarguen}      \toggletrue{projarguen}
+\newtoggle{projcodesage}    \togglefalse{projcodesage}
 \newtoggle{projmergeiq}     \toggletrue{projmergeiq}
 \newtoggle{projhealthassist}\toggletrue{projhealthassist}
 
@@ -57,7 +58,7 @@
 \end{center}
 
 \section*{Summary}
-Computer Science graduate who builds and ships full-stack, AI-powered web apps. Launched Arguen, a live AI-judged debate platform with hundreds of visitors and Razorpay billing, and MergeIQ, a GitHub App and Chrome extension that reviews pull requests with AI. Curious about new technologies and dedicated to building innovative solutions.
+Computer Science graduate who builds and ships full-stack, AI-powered web apps. Launched Arguen, a live AI-judged debate platform with hundreds of visitors and Razorpay billing, and built MergeIQ, a GitHub App and Chrome extension that reviews pull requests with AI. Seeking a software engineering role in full-stack and AI-integrated products.
 
 \section*{Education}
 \entryhead{VIT-AP University, Amaravati, Andhra Pradesh}{Graduated: September 2026}
@@ -69,30 +70,44 @@ Senior Secondary (CBSE) \hfill \textbf{Class 10: 94.4\% \quad Class 12: 83.2\%}\
 \section*{Technical Skills}
 \begin{itemize}[leftmargin=0pt, label={}, itemsep=0.5pt]
   \item \textbf{Languages:} Python, TypeScript, JavaScript, SQL, Java, HTML/CSS
-  \item \textbf{Frameworks:} React, Next.js, FastAPI, Flask, Tailwind CSS, shadcn/ui
+  \item \textbf{Core CS:} Data Structures \& Algorithms, OOP, DBMS, Computer Networks, Operating Systems
+  \item \textbf{Frameworks:} React, Next.js, FastAPI, Tailwind CSS, shadcn/ui
   \item \textbf{Data \& Backend:} PostgreSQL, Supabase (Auth, Realtime, RLS), Drizzle ORM, REST APIs, WebSockets, Webhooks
-  \item \textbf{AI / LLM:} Gemini API, OpenAI API, Anthropic API, prompt engineering, structured JSON outputs
-  \item \textbf{DevOps \& Cloud:} Git, GitHub Actions, Docker, Vitest, Sentry, PostHog, AWS, Google Cloud Run, Vercel, Railway, Render
+  \item \textbf{AI / LLM:} Gemini API, OpenAI API, Anthropic API, prompt engineering, structured JSON outputs, SAP AI Launchpad
+  \item \textbf{DevOps \& Cloud:} Git, GitHub Actions, Vitest, Sentry, PostHog, AWS, Railway, Vercel, Render
 \end{itemize}
 
 \section*{Projects}
 
 \iftoggle{projarguen}{
 \entryhead{Arguen -- Competitive Live Debate Platform}{%
-  \href{https://arguen.com}{[Live]} $|$ \href{https://github.com/primetree2/arguen}{[GitHub]}}
-\techline{Next.js 16, TypeScript, Supabase (Postgres, RLS, Realtime), Drizzle ORM, Gemini API, Razorpay, Vercel}
+  \href{https://arguen.com}{[Live]} }
+\techline{Next.js 16, TypeScript, Supabase (Postgres, RLS, Realtime), Drizzle ORM, Gemini API, OpenAI API, Razorpay, Vercel}
 \begin{itemize}
   \item Built and launched solo a real-time debate platform where two players argue timed rounds under a Gemini AI judge that scores 4 dimensions and detects 16 logical fallacies.
-  \item Architected 48 API routes and 47 SQL migrations on Supabase Postgres (Row-Level Security) for Elo-based ranked matchmaking, live spectating, and Realtime score sync.
+  \item Designed 48 API routes and 47 SQL migrations on Supabase Postgres (Row-Level Security) for Elo-based ranked matchmaking, live spectating, and Realtime score sync.
   \item Integrated Razorpay subscriptions with signature-verified, de-duplicated webhooks; wrote 116 Vitest tests run on every push via GitHub Actions.
   \item \textbf{Results:} 613 unique visitors, 1,130+ sessions (PostHog); 99.99\% crash-free sessions (Sentry).
 \end{itemize}
 \vspace{1pt}
 }{}
 
+\iftoggle{projcodesage}{
+\entryhead{CodeSage -- AI Codebase Analysis and Refactoring System}{%
+  \href{https://codesage-724681386895.us-central1.run.app/}{[Live]} $|$ \href{https://github.com/Developer-Sahil/codesage}{[GitHub]}}
+\techline{Python, Flask, Docker, Google Cloud Run, Gemini API, OpenAI API, Anthropic API}
+\begin{itemize}
+  \item Co-developed a web app that analyzes a codebase, maps its file structure, suggests refactorings, and generates technical interview questions from the code.
+  \item Supports multiple LLM providers (Google, OpenAI, Anthropic) with rate-limit delays and retry logic.
+  \item Researched and implemented cAST based refactoring, evaluated and compared responses across providers.
+  \item Containerized with Docker and deployed on Google Cloud Run.
+\end{itemize}
+\vspace{1pt}
+}{}
+
 \iftoggle{projmergeiq}{
 \entryhead{MergeIQ -- AI-Powered Pull Request Analyzer}{%
-  \href{https://github.com/primetree2/mergeiq}{[GitHub]} $|$ \href{https://web-production-6f4dd.up.railway.app}{[Live API]}}
+  \href{https://github.com/primetree2/mergeiq}{[GitHub]} }
 \techline{Python, FastAPI, Chrome Extension (Manifest V3), Gemini 2.5 Flash, GitHub REST API, GitHub Apps, Railway}
 \begin{itemize}
   \item Built a Chrome extension and GitHub App that analyze pull requests with Gemini, returning a Safe / Review Needed / Risky verdict, risk flags, and suggested review questions as structured JSON.
@@ -110,9 +125,10 @@ Senior Secondary (CBSE) \hfill \textbf{Class 10: 94.4\% \quad Class 12: 83.2\%}\
   \item Built a full-stack app that takes age, sex, symptoms, and an optional blood-report PDF, and returns a structured analysis with possible conditions, questions for a doctor, precautions, and warnings.
   \item FastAPI backend extracts PDF text with PyMuPDF and prompts Gemini for JSON-only output, with a regex fallback and session-scoped history.
 \end{itemize}
+\vspace{1pt}
 }{}
 
-\section*{Achievements \& Leadership  }
+\section*{Achievements \& Leadership }
 \begin{itemize}
   \item \textbf{2nd place among 800 teams}, The Return Journey Hackathon 2024 (national level; GDSC, IIT Kanpur).
   \item \textbf{Manager, TEAM NEXT NEXUS (Prompt Engineering Club)}, Jul--Dec 2024: led prompt-engineering study groups and reviewed generative-AI mini-projects.
@@ -128,6 +144,6 @@ Senior Secondary (CBSE) \hfill \textbf{Class 10: 94.4\% \quad Class 12: 83.2\%}\
 \end{itemize}
 
 \vspace{2pt}
-\textbf{Interests:} AI research, number theory, art and animation, content creation
+\textbf{Interests:} AI research, number theory, art and animation, content creation; \textbf{Fluent in:} English, Hindi
 
 \end{document}
